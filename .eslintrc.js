@@ -10,6 +10,8 @@ module.exports = {
       },
     ],
     indent: ['off', 2],
+    'react/react-in-jsx-scope': 'off',
+    'linebreak-style': ['error', 'unix'],
     'max-len': [
       'warn',
       {
