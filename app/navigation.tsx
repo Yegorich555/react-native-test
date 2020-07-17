@@ -1,20 +1,30 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import HomeView from './components/homeView';
 import DetailsView from './components/detailsView';
+import connectStore from './redux/connect';
+import LoginView from './components/loginVIew';
 
 const Stack = createStackNavigator();
 
-export default function Navigation() {
+interface NavigationInsideProps {
+  isLogged: boolean;
+}
+
+function NavigationInside(props: NavigationInsideProps) {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={HomeView}
-          options={{ title: 'My home' }}
-        />
+      <Stack.Navigator>
+        {props.isLogged ? (
+          <Stack.Screen
+            name="Home"
+            component={HomeView}
+            options={{ title: 'My home' }}
+          />
+        ) : (
+          <LoginView />
+        )}
+
         <Stack.Screen
           name="Details"
           component={DetailsView}
@@ -25,3 +35,8 @@ export default function Navigation() {
     </NavigationContainer>
   );
 }
+
+const Navigation = connectStore((state) => ({ isLogged: !!state.userToken }))(
+  NavigationInside,
+);
+export default Navigation;
