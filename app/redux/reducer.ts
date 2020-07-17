@@ -1,21 +1,44 @@
-import ActionTypes from './actionTypes';
+import ActionTypes, { LoginAction } from './actionTypes';
+import { AnyAction } from 'redux';
 
-const initialState = {};
+export interface StoreState {
+  userToken?: string;
+}
 
-export default function reducer(state = initialState, action = null) {
-  if (action.type.startsWith && action.type.startsWith('@@redux/INIT'))
+const initialState: StoreState = {};
+
+interface InitAction {
+  type: string;
+}
+
+export default function reducer(
+  state = initialState,
+  action: LoginAction | AnyAction = null,
+): StoreState {
+  if (
+    ((action as unknown) as InitAction).type.startsWith &&
+    ((action as unknown) as InitAction).type.startsWith('@@redux/INIT')
+  ) {
     return state;
+  }
 
   switch (action.type) {
     case ActionTypes.Login:
-      console.warn('TODO implement redux-login');
-      break;
+      return {
+        userToken: (action as LoginAction).token,
+      };
+
+    case ActionTypes.Logout: {
+      return {
+        userToken: null,
+      };
+    }
 
     default:
       console.warn(
         `Reducer.Error: there no actions for type ${action.type}`,
         action,
       );
-      break;
+      return state;
   }
 }
