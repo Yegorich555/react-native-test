@@ -7,33 +7,26 @@
  */
 
 import React from 'react';
-import { StyleSheet, StatusBar } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { StatusBar } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 import MyThemeProvider from './theme';
 import Navigation from './navigation';
+import initStore from './redux/store';
+
+const { store, persistor } = initStore();
 
 function App() {
   return (
-    <MyThemeProvider>
-      <StatusBar barStyle="dark-content" />
-      <Navigation />
-    </MyThemeProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <MyThemeProvider>
+          <StatusBar barStyle="dark-content" />
+          <Navigation />
+        </MyThemeProvider>
+      </PersistGate>
+    </Provider>
   );
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
 export default App;
