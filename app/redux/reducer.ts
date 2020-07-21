@@ -13,13 +13,17 @@ interface InitAction {
   type: string;
 }
 
+const initActions = ['@@redux/INIT', 'persist/PERSIST', 'persist/REHYDRATE'];
+
 export default function reducer(
   state = initialState,
   action: LoginAction | AnyAction = null,
 ): StoreState {
   if (
     ((action as unknown) as InitAction).type.startsWith &&
-    ((action as unknown) as InitAction).type.startsWith('@@redux/INIT')
+    initActions.some((v) =>
+      ((action as unknown) as InitAction).type.startsWith(v),
+    )
   ) {
     return state;
   }
@@ -38,7 +42,7 @@ export default function reducer(
 
     default:
       console.warn(
-        `Reducer.Error: there no actions for type ${action.type}`,
+        `Reducer.Error: there no actions for type '${action.type}'`,
         action,
       );
       return state;
