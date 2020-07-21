@@ -1,9 +1,9 @@
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeView from './components/homeView';
-import DetailsView from './components/detailsView';
 import connectStore from './redux/connect';
-import LoginView from './components/loginVIew';
+import LoginView from './components/loginView';
 
 const Stack = createStackNavigator();
 
@@ -16,21 +16,10 @@ function NavigationInside(props: NavigationInsideProps) {
     <NavigationContainer>
       <Stack.Navigator>
         {props.isLogged ? (
-          <Stack.Screen
-            name="Home"
-            component={HomeView}
-            options={{ title: 'My home' }}
-          />
+          <Stack.Screen name="Home" component={HomeView} />
         ) : (
-          <LoginView />
+          <Stack.Screen name="Login" component={LoginView} />
         )}
-
-        <Stack.Screen
-          name="Details"
-          component={DetailsView}
-          //todo use with params navigation.navigate('Details2', {name:})
-          // options={({route}: {route: any}) => ({title: route.params?.name})}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -5,7 +5,9 @@ export interface StoreState {
   userToken?: string;
 }
 
-const initialState: StoreState = {};
+const initialState: StoreState = {
+  userToken: 'someTokenHere',
+};
 
 interface InitAction {
   type: string;
