@@ -27,10 +27,14 @@ module.exports = {
       },
     ],
   },
+  // todo these settings doesn't work
   settings: {
     'import/resolver': {
       alias: {
-        map: [['@/', './src']],
+        map: [
+          ['@', './src'],
+          ['@images', './src/assets/images'],
+        ],
         extensions: ['.ts', '.js', '.jsx', '.tsx', '.json'],
       },
     },

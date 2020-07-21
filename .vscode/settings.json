@@ -9,6 +9,10 @@
     "**/{.git,node_modules}": { "when": "**" }, // always ignore .git and node_modules folders
     "**/*": { "when": "**/*.+(less|css|scss|sass)" } //exclude for css files because VSCode works fine with ones
   },
+  "path-autocomplete.pathMappings": {
+    "@": "${folder}/src",
+    "@images": "${folder}/src/assets/images"
+  },
   "stylelint.enable": true,
   "css.validate": false,
   "less.validate": false,

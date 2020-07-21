@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StackScreenProps } from '@react-navigation/stack';
 import { NavigationParams } from './navigationParams';
 import { Image, ImageSourcePropType } from 'react-native';
-import imgAccount from '@/assets/images/accounts.png';
+import imgAccount from '@images/accounts.png';
 
 type Props = StackScreenProps<NavigationParams, keyof NavigationParams>;
 
