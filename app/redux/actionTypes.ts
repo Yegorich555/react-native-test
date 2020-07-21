@@ -1,4 +1,4 @@
-const enum ActionTypes {
+export enum ActionTypes {
   Login,
   Logout,
 }
