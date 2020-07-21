@@ -4,8 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeView from './components/homeView';
 import connectStore from './redux/connect';
 import LoginView from './components/loginView';
+import { NavigationParams } from './navigationParams';
 
-const Stack = createStackNavigator();
+const RootStack = createStackNavigator<NavigationParams>();
 
 interface NavigationInsideProps {
   isLogged: boolean;
@@ -14,13 +15,13 @@ interface NavigationInsideProps {
 function NavigationInside(props: NavigationInsideProps) {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <RootStack.Navigator>
         {props.isLogged ? (
-          <Stack.Screen name="Home" component={HomeView} />
+          <RootStack.Screen name="Home" component={HomeView} />
         ) : (
-          <Stack.Screen name="Login" component={LoginView} />
+          <RootStack.Screen name="Login" component={LoginView} />
         )}
-      </Stack.Navigator>
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }

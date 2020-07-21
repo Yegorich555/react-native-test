@@ -1,16 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
-import {
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-  Header,
-} from 'react-native/Libraries/NewAppScreen';
+import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
+import { StackScreenProps } from '@react-navigation/stack';
+import { NavigationParams } from '../navigationParams';
 
-export default function HomeView({ navigation }) {
+type Props = StackScreenProps<NavigationParams, 'Home'>;
+export default function HomeView({ navigation }: Props) {
   return (
     <>
       <SafeAreaView>
@@ -19,37 +16,12 @@ export default function HomeView({ navigation }) {
           style={styles.scrollView}>
           <Header />
           <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Button
-                title="Go to Details"
-                // use 'push' to open a new one: onPress={() => navigation.push('Details')}
-                onPress={() => navigation.navigate('Details')}
-              />
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+            <Text>Some Text</Text>
+            <Button
+              title="Go Back"
+              // use 'push' to open a new one: onPress={() => navigation.push('Details')}
+              onPress={() => navigation.goBack}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
