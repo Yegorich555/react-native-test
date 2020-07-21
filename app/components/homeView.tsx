@@ -4,7 +4,7 @@ import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
-import { NavigationParams } from '../navigationParams';
+import { NavigationParams } from './navigation/navigationParams';
 
 type Props = StackScreenProps<NavigationParams, 'Home'>;
 export default function HomeView({ navigation }: Props) {

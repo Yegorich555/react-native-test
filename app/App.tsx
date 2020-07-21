@@ -11,7 +11,7 @@ import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import MyThemeProvider from './theme';
-import Navigation from './navigation';
+import Navigation from './components/navigation/navigation';
 import initStore from './redux/store';
 
 const { store, persistor } = initStore();

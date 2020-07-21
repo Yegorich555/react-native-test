@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeView from './components/homeView';
-import connectStore from './redux/connect';
-import LoginView from './components/loginView';
+import HomeView from '../homeView';
+import connectStore from '../../redux/connect';
+import LoginView from '../loginView';
 import { NavigationParams } from './navigationParams';
 
 const RootStack = createStackNavigator<NavigationParams>();
