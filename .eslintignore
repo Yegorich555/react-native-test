@@ -33,3 +33,4 @@ assets/
 public/
 ios/
 android/
+/**/*.d.ts

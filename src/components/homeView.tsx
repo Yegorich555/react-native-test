@@ -7,6 +7,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { NavigationParams } from './navigation/navigationParams';
 
 type Props = StackScreenProps<NavigationParams, 'Home'>;
+
 export default function HomeView({ navigation }: Props) {
   return (
     <>
