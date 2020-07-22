@@ -13,6 +13,7 @@ import imgPayments from '@images/payment.png';
 import imgCards from '@images/cards.png';
 import { RouteConfig, TabNavigationState } from '@react-navigation/native';
 import { BottomTabNavigationEventMap } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
+import { DefaultColors } from '@/theme/defaultTheme';
 
 type Props = StackScreenProps<NavigationParams, keyof NavigationParams>;
 
@@ -51,14 +52,20 @@ export default function TabNavigator({ children }: TabNavigatorProps) {
   return (
     <Tab.Navigator
       screenOptions={({ route }: Props) => ({
-        tabBarIcon: () => {
-          const iconName = mapIconByRoute(route);
-          return <Image source={iconName} />;
-        },
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={mapIconByRoute(route)}
+            style={{
+              tintColor: focused
+                ? DefaultColors.tabActiveLink
+                : DefaultColors.tabInactiveLink,
+            }}
+          />
+        ),
       })}
       tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
+        activeTintColor: DefaultColors.tabActiveLink,
+        inactiveTintColor: DefaultColors.tabInactiveLink,
       }}>
       {(children as TabNavigatorProps['children']).map((v) => (
         <Tab.Screen key={v.name} {...v} />
