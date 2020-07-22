@@ -5,6 +5,11 @@ import HomeView from '../homeView';
 import connectStore from '../../redux/connect';
 import LoginView from '../loginView';
 import { NavigationParams } from './navigationParams';
+import TabNavigator, { TabNavigatorProps } from './tabNavigator';
+import AccountsView from '../accountsView';
+import GivingView from '../givingView';
+import PaymentsView from '../paymentsView';
+import CardsView from '../cardsView';
 
 const RootStack = createStackNavigator<NavigationParams>();
 
@@ -15,13 +20,23 @@ interface NavigationInsideProps {
 function NavigationInside(props: NavigationInsideProps) {
   return (
     <NavigationContainer>
-      <RootStack.Navigator>
-        {props.isLogged ? (
-          <RootStack.Screen name="Home" component={HomeView} />
-        ) : (
+      {props.isLogged ? (
+        <TabNavigator>
+          {
+            [
+              { name: 'Home', component: HomeView },
+              { name: 'Accounts', component: AccountsView },
+              { name: 'Giving', component: GivingView },
+              { name: 'Payments', component: PaymentsView },
+              { name: 'Cards', component: CardsView },
+            ] as TabNavigatorProps['children']
+          }
+        </TabNavigator>
+      ) : (
+        <RootStack.Navigator>
           <RootStack.Screen name="Login" component={LoginView} />
-        )}
-      </RootStack.Navigator>
+        </RootStack.Navigator>
+      )}
     </NavigationContainer>
   );
 }
