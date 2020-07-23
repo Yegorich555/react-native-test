@@ -5,4 +5,6 @@ export type NavigationParams = {
   Giving: undefined;
   Payments: undefined;
   Cards: undefined;
+  Checking: undefined;
+  Savings: undefined;
 };

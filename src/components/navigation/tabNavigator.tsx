@@ -2,7 +2,6 @@ import React from 'react';
 import {
   createBottomTabNavigator,
   BottomTabNavigationOptions,
-  BottomTabBar,
 } from '@react-navigation/bottom-tabs';
 import { StackScreenProps } from '@react-navigation/stack';
 import { NavigationParams } from './navigationParams';
