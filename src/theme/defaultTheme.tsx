@@ -3,7 +3,7 @@ import { ThemeProvider, Theme } from 'react-native-elements';
 
 export const DefaultColors = {
   tabActiveLink: '#d73373', //rose
-  tabInactiveLink: 'gray',
+  tabInactiveLink: 'black',
 };
 
 const theme: Theme = {

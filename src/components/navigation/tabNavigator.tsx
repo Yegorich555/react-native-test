@@ -2,18 +2,32 @@ import React from 'react';
 import {
   createBottomTabNavigator,
   BottomTabNavigationOptions,
+  BottomTabBar,
 } from '@react-navigation/bottom-tabs';
 import { StackScreenProps } from '@react-navigation/stack';
 import { NavigationParams } from './navigationParams';
-import { Image, ImageSourcePropType } from 'react-native';
+import {
+  Image,
+  ImageSourcePropType,
+  StyleProp,
+  ViewStyle,
+  StyleSheet,
+  View,
+  Text,
+} from 'react-native';
 import imgAccount from '@images/accounts.png';
 import imgHome from '@images/home.png';
 import imgGiving from '@images/giving.png';
 import imgPayments from '@images/payment.png';
 import imgCards from '@images/cards.png';
 import { RouteConfig, TabNavigationState } from '@react-navigation/native';
-import { BottomTabNavigationEventMap } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
+import {
+  BottomTabNavigationEventMap,
+  BottomTabBarProps,
+  BottomTabBarOptions,
+} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import { DefaultColors } from '@/theme/defaultTheme';
+import LinearGradient from 'react-native-linear-gradient';
 
 type Props = StackScreenProps<NavigationParams, keyof NavigationParams>;
 
@@ -48,6 +62,17 @@ export type TabNavigatorProps = {
   >;
 };
 
+function TabBarGradient(props: BottomTabBarProps<BottomTabBarOptions>) {
+  return (
+    <LinearGradient
+      colors={['transparent', DefaultColors.tabActiveLink, 'transparent']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}>
+      <BottomTabBar {...props} />
+    </LinearGradient>
+  );
+}
+
 export default function TabNavigator({ children }: TabNavigatorProps) {
   return (
     <Tab.Navigator
@@ -63,9 +88,15 @@ export default function TabNavigator({ children }: TabNavigatorProps) {
           />
         ),
       })}
+      tabBar={(props) => <TabBarGradient {...props} />}
       tabBarOptions={{
         activeTintColor: DefaultColors.tabActiveLink,
         inactiveTintColor: DefaultColors.tabInactiveLink,
+        //todo with as WithAnimatedValue doesn't work
+        style: {
+          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          elevation: 0,
+        } as StyleProp<ViewStyle>,
       }}>
       {(children as TabNavigatorProps['children']).map((v) => (
         <Tab.Screen key={v.name} {...v} />
