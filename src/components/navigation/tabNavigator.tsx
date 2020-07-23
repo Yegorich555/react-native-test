@@ -6,28 +6,15 @@ import {
 } from '@react-navigation/bottom-tabs';
 import { StackScreenProps } from '@react-navigation/stack';
 import { NavigationParams } from './navigationParams';
-import {
-  Image,
-  ImageSourcePropType,
-  StyleProp,
-  ViewStyle,
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
+import { Image, ImageSourcePropType, StyleProp, ViewStyle } from 'react-native';
 import imgAccount from '@images/accounts.png';
 import imgHome from '@images/home.png';
 import imgGiving from '@images/giving.png';
 import imgPayments from '@images/payment.png';
 import imgCards from '@images/cards.png';
 import { RouteConfig, TabNavigationState } from '@react-navigation/native';
-import {
-  BottomTabNavigationEventMap,
-  BottomTabBarProps,
-  BottomTabBarOptions,
-} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
+import { BottomTabNavigationEventMap } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import { DefaultColors } from '@/theme/defaultTheme';
-import LinearGradient from 'react-native-linear-gradient';
 
 type Props = StackScreenProps<NavigationParams, keyof NavigationParams>;
 
@@ -62,17 +49,6 @@ export type TabNavigatorProps = {
   >;
 };
 
-function TabBarGradient(props: BottomTabBarProps<BottomTabBarOptions>) {
-  return (
-    <LinearGradient
-      colors={['transparent', DefaultColors.tabActiveLink, 'transparent']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}>
-      <BottomTabBar {...props} />
-    </LinearGradient>
-  );
-}
-
 export default function TabNavigator({ children }: TabNavigatorProps) {
   return (
     <Tab.Navigator
@@ -88,7 +64,6 @@ export default function TabNavigator({ children }: TabNavigatorProps) {
           />
         ),
       })}
-      tabBar={(props) => <TabBarGradient {...props} />}
       tabBarOptions={{
         activeTintColor: DefaultColors.tabActiveLink,
         inactiveTintColor: DefaultColors.tabInactiveLink,
