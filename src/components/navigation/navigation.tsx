@@ -18,6 +18,7 @@ import PaymentsView from '../paymentsView';
 import CardsView from '../cardsView';
 import CheckingView from '../checkingView';
 import SavingsView from '../savingsView';
+import HomeHeader from '../homeHeader';
 
 const RootStack = createStackNavigator<NavigationParams>();
 
@@ -29,11 +30,15 @@ function HomeTabs({
   navigation,
   route,
 }: StackScreenProps<NavigationParams, 'Home'>) {
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: getFocusedRouteNameFromRoute(route) ?? 'Home',
-    });
-  }, [navigation, route]);
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerTitle: (props) => (
+  //       <HomeHeader {...props}>
+  //         {/* {getFocusedRouteNameFromRoute(route)} */}
+  //       </HomeHeader>
+  //     ),
+  //   });
+  // }, [navigation, route]);
 
   return (
     <TabNavigator>
@@ -54,10 +59,22 @@ function NavigationInside(props: NavigationInsideProps) {
   return (
     <NavigationContainer>
       {props.isLogged ? (
-        <RootStack.Navigator>
-          <RootStack.Screen name="Home" component={HomeTabs} />
-          <RootStack.Screen name="Checking" component={CheckingView} />
-          <RootStack.Screen name="Savings" component={SavingsView} />
+        <RootStack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
+          <RootStack.Screen
+            name="Home"
+            component={HomeTabs}
+            options={{ headerTitle: HomeHeader }}
+          />
+          <RootStack.Screen
+            name="Checking"
+            component={CheckingView}
+            options={{ headerTitle: 'Checking2' }}
+          />
+          <RootStack.Screen
+            name="Savings"
+            component={SavingsView}
+            options={{ headerTitle: 'Savings2' }}
+          />
         </RootStack.Navigator>
       ) : (
         <RootStack.Navigator>
