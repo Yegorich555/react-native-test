@@ -16,6 +16,7 @@ import HomeHeaderTitle from '../home/homeHeaderTitle';
 import CheckingHeaderTitle from '../checking/checkingHeaderTitle';
 import { useMyTheme } from '@/theme/useMyTheme';
 import SavingsHeaderTitle from '../savings/savingsHeaderTitle';
+import HeaderRight from '../headerRight';
 
 const RootStack = createStackNavigator<NavigationParams>();
 
@@ -49,6 +50,7 @@ function NavigationInside(props: NavigationInsideProps) {
             headerTitleAlign: 'center',
             headerStyle: { backgroundColor: theme.colors.headerBackground },
             headerTintColor: theme.colors.headerTitle,
+            headerRight: (p) => <HeaderRight {...p} />,
           }}>
           <RootStack.Screen
             name="Home"
