@@ -6,12 +6,29 @@ export const DefaultColors = {
   tabInactiveLink: 'black',
 };
 
-const theme: Theme = {
+type ExtraTheme = {
+  colors: {
+    headerTitle: string;
+    headerBackground: string;
+  };
+};
+
+export const defaultTheme: Theme & ExtraTheme = {
   Button: {
     raised: true,
+  },
+  colors: {
+    headerTitle: 'white',
+    headerBackground: '#d73373', //rose
+  },
+  Header: {
+    backgroundColor: '#d73373',
+    style: {
+      alignItems: 'center',
+    },
   },
 };
 
 export default function DefaultThemeProvider({ children }) {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>;
 }
