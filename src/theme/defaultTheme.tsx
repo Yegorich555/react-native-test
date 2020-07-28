@@ -1,13 +1,11 @@
 import React from 'react';
 import { ThemeProvider, Theme } from 'react-native-elements';
 
-export const DefaultColors = {
-  tabActiveLink: '#d73373', //rose
-  tabInactiveLink: 'black',
-};
-
 type ExtraTheme = {
   colors: {
+    tabActiveLink: string;
+    tabInactiveLink: string;
+    tabBackground: string;
     headerTitle: string;
     headerBackground: string;
   };
@@ -18,8 +16,11 @@ export const defaultTheme: Theme & ExtraTheme = {
     raised: true,
   },
   colors: {
+    tabActiveLink: '#d73373', //rose
+    tabInactiveLink: 'black',
+    tabBackground: 'rgba(255, 255, 255, 0.5)',
     headerTitle: 'white',
-    headerBackground: '#d73373', //rose
+    headerBackground: '#d73373',
   },
   Header: {
     backgroundColor: '#d73373',

@@ -13,7 +13,7 @@ import imgPayments from '@images/payment.png';
 import imgCards from '@images/cards.png';
 import { RouteConfig, TabNavigationState } from '@react-navigation/native';
 import { BottomTabNavigationEventMap } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
-import { DefaultColors } from '@/theme/defaultTheme';
+import { useMyTheme } from '@/theme/useMyTheme';
 
 type Props = StackScreenProps<NavigationParams, keyof NavigationParams>;
 
@@ -49,6 +49,7 @@ export type TabNavigatorProps = {
 };
 
 export default function TabNavigator({ children }: TabNavigatorProps) {
+  const { theme } = useMyTheme();
   return (
     <Tab.Navigator
       screenOptions={({ route }: Props) => ({
@@ -57,18 +58,18 @@ export default function TabNavigator({ children }: TabNavigatorProps) {
             source={mapIconByRoute(route)}
             style={{
               tintColor: focused
-                ? DefaultColors.tabActiveLink
-                : DefaultColors.tabInactiveLink,
+                ? theme.colors.tabActiveLink
+                : theme.colors.tabInactiveLink,
             }}
           />
         ),
       })}
       tabBarOptions={{
-        activeTintColor: DefaultColors.tabActiveLink,
-        inactiveTintColor: DefaultColors.tabInactiveLink,
+        activeTintColor: theme.colors.tabActiveLink,
+        inactiveTintColor: theme.colors.tabInactiveLink,
         //todo with as WithAnimatedValue doesn't work
         style: {
-          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          backgroundColor: theme.colors.tabBackground,
           elevation: 0,
         } as StyleProp<ViewStyle>,
       }}>
