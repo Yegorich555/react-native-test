@@ -1,16 +1,22 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, StatusBar } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
-import { NavigationParams } from './navigation/navigationParams';
+import { NavigationParams } from '../navigation/navigationParams';
+import { useMyTheme } from '@/theme/useMyTheme';
 
 type Props = StackScreenProps<NavigationParams, 'Home'>;
 
 export default function HomeView({ navigation }: Props) {
+  const { theme } = useMyTheme();
   return (
     <SafeAreaView>
+      <StatusBar
+        backgroundColor={theme.Header.backgroundColor}
+        barStyle="light-content"
+      />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}>

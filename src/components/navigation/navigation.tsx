@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  NavigationContainer,
-  getFocusedRouteNameFromRoute,
-} from '@react-navigation/native';
-import {
-  createStackNavigator,
-  StackScreenProps,
-} from '@react-navigation/stack';
-import HomeView from '../homeView';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeView from '../home/homeView';
 import connectStore from '../../redux/connect';
 import LoginView from '../loginView';
 import { NavigationParams } from './navigationParams';
@@ -16,9 +10,12 @@ import AccountsView from '../accountsView';
 import GivingView from '../givingView';
 import PaymentsView from '../paymentsView';
 import CardsView from '../cardsView';
-import CheckingView from '../checkingView';
+import CheckingView from '../checking/checkingView';
 import SavingsView from '../savingsView';
-import HomeHeader from '../homeHeader';
+import HomeHeaderTitle from '../home/homeHeaderTitle';
+import CheckingHeaderTitle from '../checking/checkingHeaderTitle';
+import { useMyTheme } from '@/theme/useMyTheme';
+import SavingsHeaderTitle from '../savings/savingsHeaderTitle';
 
 const RootStack = createStackNavigator<NavigationParams>();
 
@@ -26,20 +23,7 @@ interface NavigationInsideProps {
   isLogged: boolean;
 }
 
-function HomeTabs({
-  navigation,
-  route,
-}: StackScreenProps<NavigationParams, 'Home'>) {
-  // React.useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerTitle: (props) => (
-  //       <HomeHeader {...props}>
-  //         {/* {getFocusedRouteNameFromRoute(route)} */}
-  //       </HomeHeader>
-  //     ),
-  //   });
-  // }, [navigation, route]);
-
+function HomeTabs() {
   return (
     <TabNavigator>
       {
@@ -56,24 +40,36 @@ function HomeTabs({
 }
 
 function NavigationInside(props: NavigationInsideProps) {
+  const { theme } = useMyTheme();
   return (
     <NavigationContainer>
       {props.isLogged ? (
-        <RootStack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
+        <RootStack.Navigator
+          screenOptions={{
+            headerTitleAlign: 'center',
+            headerStyle: { backgroundColor: theme.colors.headerBackground },
+            headerTintColor: theme.colors.headerTitle,
+          }}>
           <RootStack.Screen
             name="Home"
             component={HomeTabs}
-            options={{ headerTitle: HomeHeader }}
+            options={{
+              headerTitle: () => <HomeHeaderTitle />,
+            }}
           />
           <RootStack.Screen
             name="Checking"
             component={CheckingView}
-            options={{ headerTitle: 'Checking2' }}
+            options={{
+              headerTitle: (p) => <CheckingHeaderTitle {...p} />,
+            }}
           />
           <RootStack.Screen
             name="Savings"
             component={SavingsView}
-            options={{ headerTitle: 'Savings2' }}
+            options={{
+              headerTitle: (p) => <SavingsHeaderTitle {...p} />,
+            }}
           />
         </RootStack.Navigator>
       ) : (

@@ -12,6 +12,7 @@ module.exports = {
     indent: ['off', 2],
     'react/react-in-jsx-scope': 'off',
     'linebreak-style': ['error', 'unix'],
+    'react-native/no-inline-styles': 'off',
     'max-len': [
       'warn',
       {
